@@ -41,10 +41,12 @@ shape = SubResource("RectangleShape2D_b6xb7")
 [node name="NoteToWinner" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
 visible = false
-offset_left = -25.0
-offset_top = -121.0
-offset_right = 122.0
-offset_bottom = -24.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -97.0
+offset_right = 147.0
+grow_vertical = 0
 size_flags_horizontal = 4
 theme_override_fonts/normal_font = ExtResource("3_b6xb7")
 theme_override_fonts/bold_font = ExtResource("3_b6xb7")
