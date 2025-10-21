@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgk1f5ygbd80j"]
+
+[ext_resource type="Texture2D" uid="uid://bbopn6h85ltum" path="res://assets/sprites/fruit.png" id="1_07r4p"]
+[ext_resource type="PackedScene" uid="uid://70586rdv2mgv" path="res://scenes/winners_zone.tscn" id="2_qyf8w"]
+[ext_resource type="FontFile" uid="uid://c5knlmm13ntvp" path="res://assets/fonts/PixelOperator8.ttf" id="3_b6xb7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6fnw"]
+atlas = ExtResource("1_07r4p")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oqmav"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6fnw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b6xb7"]
+size = Vector2(12, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3h8v7"]
+
+[node name="WinnersFruit" type="Node2D"]
+top_level = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -9)
+sprite_frames = SubResource("SpriteFrames_oqmav")
+autoplay = "default"
+
+[node name="winners_zone" parent="AnimatedSprite2D" instance=ExtResource("2_qyf8w")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/winners_zone"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_b6xb7")
+
+[node name="NoteToWinner" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -25.0
+offset_top = -121.0
+offset_right = 122.0
+offset_bottom = -24.0
+size_flags_horizontal = 4
+theme_override_fonts/normal_font = ExtResource("3_b6xb7")
+theme_override_fonts/bold_font = ExtResource("3_b6xb7")
+theme_override_fonts/italics_font = ExtResource("3_b6xb7")
+theme_override_font_sizes/normal_font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxFlat_3h8v7")
+bbcode_enabled = true
+text = "CONGRATULATIONS !!!!!
+
+YOU FOUND IT!!
+
+SECRET LAKSHMI GIFT
+
+ 
+AMAZON GIFT CARD:
+
+Voucher ID: 
+Voucher Code: "
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+autowrap_trim_flags = 0
+tab_size = 2
+horizontal_alignment = 1
+vertical_alignment = 1

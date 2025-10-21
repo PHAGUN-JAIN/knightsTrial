@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgvd3f1sx5mrl"]
+
+[ext_resource type="Script" uid="uid://s5jm1cbjgys5" path="res://scripts/kill_zone.gd" id="1_kebdr"]
+[ext_resource type="AudioStream" uid="uid://bbnjk046nvm6f" path="res://assets/sounds/hurt.wav" id="2_l4ff3"]
+
+[sub_resource type="Animation" id="Animation_kebdr"]
+resource_name = "hurt"
+length = 3.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hurt_sound")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_l4ff3")
+}],
+"times": PackedFloat32Array(0.06666666)
+}
+tracks/0/use_blend = false
+
+[sub_resource type="Animation" id="Animation_l4ff3"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_koymq"]
+_data = {
+&"RESET": SubResource("Animation_l4ff3"),
+&"hurt": SubResource("Animation_kebdr")
+}
+
+[node name="kill_zone" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_kebdr")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="hurt_sound" type="AudioStreamPlayer2D" parent="."]
+bus = &"sfx"
+
+[node name="hurt" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_koymq")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
